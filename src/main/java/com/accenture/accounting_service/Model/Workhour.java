@@ -1,8 +1,13 @@
-package com.accenture.accounting_service.Entity;
+package com.accenture.accounting_service.Model;
 
 import com.couchbase.client.core.deps.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.data.annotation.Id;
-
+@JsonDeserialize(builder = Workhour.WorkhourBuilder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Workhour {
     @Id
     private String empId;
@@ -12,16 +17,12 @@ public class Workhour {
     public Workhour() {
     }
 
-    public Workhour(String empId, Number yearMonth, Number count) {
-        super();
-        this.empId = empId;
-        this.yearMonth = yearMonth;
-        this.count = count;
-    }
+    public Workhour(WorkhourBuilder builder) {
 
-    public Workhour(WorkhourBuilder workhourBuilder) {
+        this.empId = builder.empId;
+        this.yearMonth = builder.yearMonth;
+        this.count =builder.count;
     }
-
     public String getEmpId() {
         return empId;
     }

@@ -1,27 +1,19 @@
 package com.accenture.accounting_service.Controller;
 
-import com.accenture.accounting_service.FeignConsumer.EmployeeRequest;
-import com.accenture.accounting_service.FeignConsumer.WorkhourRequest;
+//import com.accenture.accounting_service.FeignConsumer.EmployeeRequest;
+//import com.accenture.accounting_service.FeignConsumer.WorkhourRequest;
+import com.accenture.accounting_service.Model.Salary;
+import com.accenture.accounting_service.Model.WorkHourReq;
+import com.accenture.accounting_service.Service.AccountingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("account")
+@RequestMapping("/api/accounting")
 public class AccountingController {
     @Autowired
-    EmployeeRequest employeeRequest;
-    @Autowired
-    WorkhourRequest workhourRequest;
-    @GetMapping("/{id}")
-    public int getEmpBaseSalary(@PathVariable("id") String Id){
-        return employeeRequest.getEmpBaseSalaryById(Id);
+    private AccountingService accountingService;
+    public Salary calculateSalary(@RequestBody WorkHourReq workHourReq){
+        return this.accountingService.calculateSalary(workHourReq);
     }
-    @GetMapping("/work/{id}")
-    public Number getEmpCount(@PathVariable("empId") String empId){
-        return workhourRequest.getEmpCountById(empId);
-    }
-
 }
