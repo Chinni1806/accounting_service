@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
-@FeignClient(name="Workhour-service",url="http://localhost:9002/api/Workhour")
+@FeignClient(name="Workhour-service")
 public interface WorkhourServiceProxy {
     @GetMapping("/req")
     public Optional<Workhour> getEmployeeLeaveByEmpIdAndYearMonth(@RequestBody WorkHourReq workhourreq);
