@@ -9,43 +9,45 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WorkHourReq {
-    private String empId;
-    private Number yearMonth;
+    private int count;
+    private int days;
+
     public WorkHourReq() {
     }
 
     public WorkHourReq(WorkHourReqBuilder builder) {
-        this.empId = builder.empId;
-        this.yearMonth = builder.yearMonth;
+        this.count = builder.count;
+        this.days = builder.days;
     }
 
-    public String getEmployeeId() {
-        return empId;
+    public int getCount() {
+        return count;
     }
 
-    public Number getYearMonth() {
-        return yearMonth;
+    public int getDays() {
+        return days;
     }
 
     @Override
     public String toString() {
         return "WorkHourReq{" +
-                "empId='" + empId + '\'' +
-                ", yearMonth=" + yearMonth +
+                "Count='" + count + '\'' +
+                ", days=" + days +
                 '}';
     }
-    @JsonPOJOBuilder(withPrefix = "set")
-    public static class WorkHourReqBuilder{
-        protected String empId;
-        protected Number yearMonth;
 
-        public WorkHourReq.WorkHourReqBuilder setEmployeeId(String empId) {
-            this.empId = empId;
+    @JsonPOJOBuilder(withPrefix = "set")
+    public static class WorkHourReqBuilder {
+        protected int count;
+        protected int days;
+
+        public WorkHourReqBuilder setCount(int count) {
+            this.count = count;
             return this;
         }
 
-        public WorkHourReq.WorkHourReqBuilder setYearMonth(Number yearMonth) {
-            this.yearMonth = yearMonth;
+        public WorkHourReqBuilder setDays(int days) {
+            this.days = days;
             return this;
         }
 
@@ -53,5 +55,4 @@ public class WorkHourReq {
             return new WorkHourReq(this);
         }
     }
-
 }
