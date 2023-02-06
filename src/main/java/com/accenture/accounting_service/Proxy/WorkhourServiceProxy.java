@@ -5,9 +5,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="Workhour-service",url = "http://localhost:9003/api/Workhour")
+@FeignClient(name="WORKHOUR-SERVICE")
 public interface WorkhourServiceProxy {
-    @GetMapping("/{empId}/{yearMonth}")
-    WorkHourReq getEmployeeLeaveByEmpIdAndYearMonth(@PathVariable String empId, int yearMonth);
+    @GetMapping("/api/Workhour/{empId}/{yearMonth}")
+    WorkHourReq getEmployeeLeaveByEmpIdAndYearMonth(@PathVariable("empId") String empId,@PathVariable("yearMonth") int yearMonth);
 
 }

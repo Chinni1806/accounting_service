@@ -12,8 +12,7 @@ import org.springframework.data.couchbase.core.mapping.Document;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Document
 public class Salary {
-    @Id
-    private String empId;
+
     private Number amount;
     private Number yearMonth;
 
@@ -21,13 +20,11 @@ public class Salary {
     }
     public Salary(SalaryBuilder builder){
         this.amount=builder.amount;
-        this.empId=builder.empId;
+
         this.yearMonth=builder.yearMonth;
     }
 
-    public String getEmpId() {
-        return empId;
-    }
+
 
     public Number getAmount() {
         return amount;
@@ -37,24 +34,13 @@ public class Salary {
         return yearMonth;
     }
 
-    @Override
-    public String toString() {
-        return "Salary{" +
-                "empId='" + empId + '\'' +
-                ", amount=" + amount +
-                ", yearMonth=" + yearMonth +
-                '}';
-    }
+
     @JsonPOJOBuilder(withPrefix = "set")
     public static class SalaryBuilder {
-        protected String empId;
+
         protected Number yearMonth;
         protected Number amount;
 
-        public SalaryBuilder setEmpId(String empId) {
-            this.empId = empId;
-            return this;
-        }
 
         public SalaryBuilder setYearMonth(Number yearMonth) {
             this.yearMonth = yearMonth;

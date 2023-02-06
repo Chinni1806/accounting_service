@@ -28,13 +28,6 @@ public class WorkHourReq {
         return days;
     }
 
-    @Override
-    public String toString() {
-        return "WorkHourReq{" +
-                "Count='" + count + '\'' +
-                ", days=" + days +
-                '}';
-    }
 
     @JsonPOJOBuilder(withPrefix = "set")
     public static class WorkHourReqBuilder {

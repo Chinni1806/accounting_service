@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import org.springframework.data.annotation.Id;
+
+
 @JsonDeserialize(builder = Employee.EmployeeBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class Employee {
 
-    private String id;
+    private String empId;
     private String name;
     private String deptName;
     private String address;
@@ -19,7 +21,7 @@ public class Employee {
     public Employee() {
     }
     public Employee(EmployeeBuilder builder){
-        this.id=builder.id;
+        this.empId =builder.empId;
         this.name=builder.name;
         this.deptName=builder.deptName;
         this.address=builder.address;
@@ -27,8 +29,8 @@ public class Employee {
     }
 
 
-    public String getId() {
-        return id;
+    public String getEmpId() {
+        return empId;
     }
 
     public String getName() {
@@ -49,7 +51,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id='" + id + '\'' +
+                "id='" + empId + '\'' +
                 ", name='" + name + '\'' +
                 ", deptName='" + deptName + '\'' +
                 ", address='" + address + '\'' +
@@ -58,14 +60,14 @@ public class Employee {
     }
     @JsonPOJOBuilder(withPrefix = "set")
     public static class EmployeeBuilder {
-        protected String id;
+        protected String empId;
         protected String name;
         protected String deptName;
         protected String address;
         protected int baseSalary;
 
-        public EmployeeBuilder setId(String id) {
-            this.id = id;
+        public EmployeeBuilder setEmpId(String empId) {
+            this.empId = empId;
             return this;
         }
 
